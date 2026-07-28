@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SB Transparency — Prep Guide</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0e1a;color:#e2e8f0}
+a{color:#d4a853;text-decoration:none}
+.topnav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1e293b;padding:12px 32px;display:flex;align-items:center;justify-content:space-between}
+.topnav .logo{font-size:16px;font-weight:700;color:#d4a853}
+.topnav .badge{background:#1a1f2e;border:1px solid #d4a853;color:#d4a853;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
+.hero{padding:110px 32px 50px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,83,0.08) 0%,transparent 60%)}
+.hero h1{font-size:44px;font-weight:800;background:linear-gradient(135deg,#d4a853,#f5d78e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:16px;color:#94a3b8;max-width:560px;margin:12px auto}
+.content{max-width:900px;margin:0 auto;padding:0 32px 60px}
+.section-header{margin-bottom:20px;padding-top:48px}
+.section-header h2{font-size:26px;font-weight:700;color:#f8fafc}
+.section-header p{color:#64748b;font-size:14px;margin-top:4px}
+.card{background:#131825;border:1px solid #1e293b;border-radius:14px;padding:24px;margin-bottom:20px;transition:border-color 0.2s}
+.card:hover{border-color:#d4a853}
+.card h3{font-size:16px;color:#f8fafc;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card p,.card li{font-size:13px;color:#94a3b8;line-height:1.8}
+.card ul{padding-left:16px;margin-top:8px}
+.steps{counter-reset:step}
+.step{display:flex;gap:16px;margin-bottom:24px}
+.step::before{counter-increment:step;content:counter(step);width:36px;height:36px;background:linear-gradient(135deg,#d4a853,#b8860b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#0a0e1a;flex-shrink:0}
+.step-body h4{font-size:15px;color:#f8fafc;margin-bottom:4px}
+.step-body p{font-size:13px;color:#94a3b8}
+.step-body code{background:#0a0e1a;border:1px solid #1e293b;padding:2px 8px;border-radius:4px;font-size:12px;color:#d4a853}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+th{text-align:left;padding:10px 12px;color:#d4a853;font-weight:600;border-bottom:1px solid #1e293b;background:#0f1320}
+td{padding:10px 12px;border-bottom:1px solid #131825;color:#cbd5e1}
+.callout{background:#131825;border-left:3px solid #d4a853;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0;font-size:13px;color:#cbd5e1}
+.callout strong{color:#d4a853}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:8px 0;border-bottom:1px solid #131825;font-size:13px;color:#cbd5e1}
+.checklist li::before{content:"✓ ";color:#d4a853;font-weight:700}
+.faq-item{border-bottom:1px solid #1e293b;padding:14px 0}
+.faq-item strong{color:#f8fafc;font-size:13px;display:block;margin-bottom:4px}
+.faq-item p{font-size:12px;color:#94a3b8}
+.footer{text-align:center;padding:40px;border-top:1px solid #1e293b;color:#475569;font-size:12px}
+.footer .brand{color:#d4a853;font-weight:600}
+</style>
+</head>
+<body>
+<nav class="topnav">
+<span class="logo">SB Transparency — Prep Guide</span>
+<span class="badge">v2.2</span>
+</nav>
+<section class="hero">
+<h1>Prep Guide</h1>
+<p>Set up your Veeqo products and install the extension in under 5 minutes.</p>
+</section>
+<div class="content">
+<div class="section-header"><h2>Before You Start</h2><p>The Code Scanner reads product names in Veeqo to detect which items need codes. Tag your products first.</p></div>
+<div class="card">
+<h3>What You Need</h3>
+<ul class="checklist">
+<li>Google Chrome browser (desktop)</li>
+<li>Veeqo account with API access</li>
+<li>The extension folder (from your Amazon rep)</li>
+<li>USB or Bluetooth barcode scanner (recommended)</li>
+<li>Products tagged with [TP] or [SN] in Veeqo</li>
+</ul>
+</div>
+<div class="section-header"><h2>Step 1: Tag Your Products</h2><p>Add the code type tag to the END of each product name</p></div>
+<div class="card">
+<table>
+<tr><th>If item needs...</th><th>Add this tag</th><th>Example</th></tr>
+<tr><td>Transparency codes</td><td><code>[TP]</code></td><td>Nexen Aria AH7 Tire (205/65R16, 95H) [TP]</td></tr>
+<tr><td>Serial numbers (1/unit)</td><td><code>[SN]</code></td><td>DJI Mini 4 Pro Drone [SN]</td></tr>
+<tr><td>Serial numbers (2/unit)</td><td><code>[SN2]</code></td><td>iPhone 16 Pro Max [SN2]</td></tr>
+</table>
+<div class="callout"><strong>Where to add:</strong> Veeqo → Inventory → Find product → Edit → Product Title. Tag must be in the title.</div>
+</div>
+<div class="section-header"><h2>Step 2: Get Your API Key</h2></div>
+<div class="card">
+<div class="steps">
+<div class="step"><div class="step-body"><h4>Go to app.veeqo.com → Settings → Users</h4><p>Log in and navigate to Users section</p></div></div>
+<div class="step"><div class="step-body"><h4>Click "Add New User"</h4><p>Name it <code>Code Scanner</code></p></div></div>
+<div class="step"><div class="step-body"><h4>Copy the API key</h4><p>Save it — you'll paste it into the extension</p></div></div>
+</div>
+</div>
+<div class="section-header"><h2>Step 3: Install the Extension</h2></div>
+<div class="card">
+<div class="steps">
+<div class="step"><div class="step-body"><h4>Save extension folder permanently</h4><p>Desktop or Documents — don't delete it later</p></div></div>
+<div class="step"><div class="step-body"><h4>Open <code>chrome://extensions</code></h4><p>Turn ON "Developer mode" (top-right)</p></div></div>
+<div class="step"><div class="step-body"><h4>Click "Load unpacked" → select folder</h4><p>Extension icon appears in toolbar</p></div></div>
+<div class="step"><div class="step-body"><h4>Click icon → paste API key → Save</h4><p>Reload Veeqo tab — badges appear!</p></div></div>
+</div>
+</div>
+<div class="section-header"><h2>Step 4: Verify</h2></div>
+<div class="card">
+<p>Go to Veeqo → Orders. You should see:</p>
+<ul>
+<li>Orange <strong>TP: 0/1</strong> badges on [TP] items</li>
+<li>Purple <strong>SN Required</strong> tags on [SN] items</li>
+<li><strong>Export Codes</strong> button in the nav bar</li>
+</ul>
+<div class="callout"><strong>No badges?</strong> Check: product name has tag, extension enabled, Veeqo tab reloaded.</div>
+</div>
+<div class="section-header"><h2>Scanner Setup</h2></div>
+<div class="card">
+<table>
+<tr><th>Setting</th><th>Value</th><th>Why</th></tr>
+<tr><td>Suffix character</td><td>Enter (CR/LF)</td><td>Auto-submits each code</td></tr>
+<tr><td>Scan mode</td><td>Continuous</td><td>Your preference</td></tr>
+<tr><td>Beep on scan</td><td>Enabled</td><td>Audio confirmation</td></tr>
+</table>
+</div>
+<div class="section-header"><h2>Updating</h2></div>
+<div class="card">
+<div class="steps">
+<div class="step"><div class="step-body"><h4>Replace files in extension folder</h4></div></div>
+<div class="step"><div class="step-body"><h4>chrome://extensions → click refresh icon</h4></div></div>
+<div class="step"><div class="step-body"><h4>Reload Veeqo tab</h4><p>API key preserved</p></div></div>
+</div>
+</div>
+<div class="section-header"><h2>FAQ</h2></div>
+<div class="card">
+<div class="faq-item"><strong>Q: Do I tag every product?</strong><p>Only Transparency-enrolled or serial-tracked items. Untagged items are ignored.</p></div>
+<div class="faq-item"><strong>Q: Handheld scanner work?</strong><p>Yes — any USB/Bluetooth scanner sending keyboard input works.</p></div>
+<div class="faq-item"><strong>Q: Wrong code scanned?</strong><p>Click × next to any code in the modal before uploading.</p></div>
+<div class="faq-item"><strong>Q: Works on mobile?</strong><p>No — desktop Chrome only.</p></div>
+<div class="faq-item"><strong>Q: Multiple staff?</strong><p>Yes — each installs with same API key. Badges refresh from live data.</p></div>
+</div>
+</div>
+<div class="footer">
+<span class="brand">SB Transparency v2.2</span> — Prep Guide<br>
+Built by Shannon Bush | Works with Veeqo Shipping Software
+</div>
+</body>
+</html>
