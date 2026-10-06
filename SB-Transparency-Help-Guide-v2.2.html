@@ -73,13 +73,17 @@ tr:hover td{background:#0f1320}
 <nav class="topnav">
 <span class="logo"><span>SB</span> Transparency</span>
 <div class="nav-links">
-<a href="#features" class="active">Features</a>
+<a href="SB-Transparency-Prep-Guide-v2.2.html">Prep Guide</a>
+<a href="SB-Transparency-Help-Guide-v2.2.html" class="active">Help Guide</a>
+<a href="SB-Transparency-Privacy-Policy.html">Privacy Policy</a>
+<span style="color:#334155">|</span>
+<a href="#features">Features</a>
 <a href="#workflow">Workflow</a>
 <a href="#export">Export</a>
 <a href="#carriers">Carriers</a>
 <a href="#troubleshoot">Help</a>
 </div>
-<span class="badge">v2.2</span>
+<span class="badge">v2.4.0</span>
 </nav>
 
 <section class="hero">
@@ -88,7 +92,7 @@ tr:hover td{background:#0f1320}
 <p class="tagline">Detect codes from product titles, scan and capture them, export flat files — all without leaving Veeqo.</p>
 <div class="cta">
 <a href="#workflow" class="primary">How It Works →</a>
-<a href="#changelog" class="secondary">What's New in v2.2</a>
+<a href="#changelog" class="secondary">What's New in v2.4.0</a>
 </div>
 </section>
 
@@ -176,6 +180,7 @@ tr:hover td{background:#0f1320}
 <div class="grid-2">
 <div class="card">
 <h3>Carrier Code Mapping</h3>
+<p style="font-size:12px;color:#94a3b8;margin-bottom:10px">The <strong>ship method is the source of truth</strong> for the carrier. If Veeqo's carrier field disagrees with the carrier named by the service (e.g. a "UPS" carrier on a FedEx service), the ship-method carrier wins — so <code>carrier-name</code> and <code>ship-method</code> always agree.</p>
 <table>
 <tr><th>Veeqo Shows</th><th>Flat File Gets</th></tr>
 <tr><td>UPS (any service)</td><td>UPS</td></tr>
@@ -185,21 +190,25 @@ tr:hover td{background:#0f1320}
 <tr><td>FedEx Freight</td><td>Fedex Freight</td></tr>
 <tr><td>USPS (any service)</td><td>USPS</td></tr>
 <tr><td>DHL eCommerce</td><td>DHL eCommerce</td></tr>
+<tr><td>DHL (Express)</td><td>DHL</td></tr>
 <tr><td>OnTrac</td><td>OnTrac</td></tr>
-<tr><td>Amazon Shipping</td><td>Other</td></tr>
+<tr><td>Buy Shipping / Amazon Shipping</td><td>Resolved from the ship method, then tracking number</td></tr>
 </table>
 </div>
 <div class="card">
 <h3>Ship Method Mapping</h3>
+<p style="font-size:12px;color:#94a3b8;margin-bottom:10px">Veeqo service IDs are normalized to the <strong>exact Amazon display string</strong> (® symbol, "One Rate", "(Saturday)", "A.M.", flat-rate and weight-break variants). A value that is already correct passes through unchanged. Sample below — full coverage: UPS 8, USPS 21, FedEx 17, DHL eCommerce 5, DHL Express 1, Amazon Shipping 1.</p>
 <table>
 <tr><th>Veeqo Service ID</th><th>Flat File Gets</th></tr>
-<tr><td>ups_ground</td><td>UPS Ground</td></tr>
-<tr><td>usps_priority_mail</td><td>USPS Priority Mail</td></tr>
-<tr><td>usps_ground_advantage</td><td>USPS Ground Advantage</td></tr>
-<tr><td>fedex_home_delivery</td><td>FedEx Home Delivery</td></tr>
-<tr><td>fedex_ground</td><td>FedEx Ground</td></tr>
-<tr><td>dhl_ecommerce_parcel_ground</td><td>DHL eCommerce Ground</td></tr>
-<tr><td>ontrac_ground</td><td>OnTrac Ground</td></tr>
+<tr><td>ups_next_day_air</td><td>UPS Next Day Air®</td></tr>
+<tr><td>ups_ground</td><td>UPS® Ground</td></tr>
+<tr><td>usps_priority_mail</td><td>USPS Priority Mail®</td></tr>
+<tr><td>usps_ground_advantage</td><td>USPS Ground Advantage (1 - 70 lb)</td></tr>
+<tr><td>fedex_express_saver_one_rate</td><td>FedEx Express Saver® One Rate</td></tr>
+<tr><td>fedex_ground_economy</td><td>FedEx Ground Economy (Tender to FedEx only)</td></tr>
+<tr><td>dhl_ecommerce_parcel_ground</td><td>DHL eCommerce Parcel Ground</td></tr>
+<tr><td>dhl_express_international</td><td>DHL Express International</td></tr>
+<tr><td>amazon_shipping_ground</td><td>Amazon Shipping Ground</td></tr>
 </table>
 </div>
 </div>
@@ -214,14 +223,29 @@ tr:hover td{background:#0f1320}
 <tr><td>Export shows 0 orders</td><td>Check date range — filters by ship date, not order date</td></tr>
 <tr><td>Seller Central error 18028</td><td>Duplicate code already used on a prior upload. Need fresh codes.</td></tr>
 <tr><td>All badges turn green at once</td><td>Update to v2.2 — fixes per-line-item tracking</td></tr>
-<tr><td>Wrong carrier in export</td><td>Extension maps Veeqo carrier name → if unrecognized shows "Other"</td></tr>
+<tr><td>carrier-name and ship-method name different carriers</td><td>Fixed in v2.4.0 — the ship method now sets the carrier, so the two columns always agree. Reload the extension.</td></tr>
+<tr><td>Ship method missing the ® or "One Rate" wording</td><td>Fixed in v2.4.0 — update to the latest version for the exact Amazon display strings.</td></tr>
+<tr><td>Wrong carrier in export</td><td>Extension derives the carrier from the ship method; an unrecognized carrier with no service signal shows "Other"</td></tr>
 <tr><td>Extension disappeared</td><td>Reinstall via the Chrome extension link from your Amazon rep</td></tr>
 </table>
 </div>
 
 <div class="section-header" id="changelog"><h2>What's New</h2><p>Version history</p></div>
 <div class="card">
-<h3 style="color:#d4a853">v2.2 — July 2026</h3>
+<h3 style="color:#d4a853">v2.4.0 — October 2026</h3>
+<div class="changelog-item"><span class="tag tag-new">NEW</span>Canonical Amazon ship-method vocabulary — exact display strings (®, "One Rate", "(Saturday)", "A.M.", flat-rate &amp; weight-break variants) across UPS, USPS, FedEx, DHL eCommerce, DHL Express, and Amazon Shipping</div>
+<div class="changelog-item"><span class="tag tag-fix">FIX</span>carrier-name and ship-method could name different carriers — the ship method is now the source of truth and sets the carrier, so the two columns always agree</div>
+<div class="changelog-item"><span class="tag tag-new">NEW</span>Already-correct ship methods pass through unchanged; unknown services fall back to a readable title-cased value</div>
+</div>
+<div class="card" style="margin-top:12px">
+<h3 style="color:#94a3b8">v2.3 — September 2026</h3>
+<div class="changelog-item"><span class="tag tag-new">NEW</span>Flat file export includes the 10 ship_from_* warehouse-address columns (19-column Amazon template)</div>
+<div class="changelog-item"><span class="tag tag-new">NEW</span>Transparency validation accepts both the AZ:/ZA: 29-char code and the 38-char SGTIN</div>
+<div class="changelog-item"><span class="tag tag-fix">FIX</span>Amazon Buy Shipping orders resolve to the true carrier instead of "Buy Shipping"/"Amazon Shipping"</div>
+<div class="changelog-item"><span class="tag tag-new">NEW</span>Split-shipment rows backfill a shared ship method onto blank rows</div>
+</div>
+<div class="card" style="margin-top:12px">
+<h3 style="color:#94a3b8">v2.2 — July 2026</h3>
 <div class="changelog-item"><span class="tag tag-fix">FIX</span>Badge no longer marks all items complete when one code is scanned</div>
 <div class="changelog-item"><span class="tag tag-fix">FIX</span>SKU correctly identified per line item (per-item span lookup)</div>
 <div class="changelog-item"><span class="tag tag-new">NEW</span>Ship method mapping — converts Veeqo IDs to human-readable names</div>
@@ -249,8 +273,8 @@ tr:hover td{background:#0f1320}
 </div>
 
 <div class="footer">
-<span class="brand">SB Transparency v2.2</span> — Built by Shannon Bush, Veeqo Enterprise Partnerships<br>
-Works seamlessly with <strong style="color:#d4a853">Veeqo</strong> Shipping Software &nbsp;|&nbsp; Last updated July 27, 2026
+<span class="brand">SB Transparency v2.4.0</span> — Built by Shannon Bush, Veeqo Enterprise Partnerships<br>
+Works seamlessly with <strong style="color:#d4a853">Veeqo</strong> Shipping Software &nbsp;|&nbsp; Last updated October 6, 2026
 </div>
 </body>
 </html>
